@@ -11,3 +11,17 @@ public class GotocloudSpringbootApi1Application {
 	}
 
 }
+
+/*
+  { "name":"akash",
+		  "registrationID":"dfgdg",
+		  "qualifications":"dfgdfg",
+		  "specialization":"sfgsdgf",
+		  "experienceInYears":"sdfsfg",
+		  "emailID":"dfgfdg",
+		  "clinicNameAndAddress":"dfgdG",
+		  "canDoHomeVisit":"true"
+		  }
+
+
+ */

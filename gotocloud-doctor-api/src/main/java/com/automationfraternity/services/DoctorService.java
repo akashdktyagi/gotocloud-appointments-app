@@ -2,7 +2,6 @@ package com.automationfraternity.services;
 
 import com.automationfraternity.model.Doctor;
 import com.automationfraternity.repository.IDoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -19,12 +18,11 @@ public class DoctorService {
     }
 
     public Doctor createDoctor(Doctor doctor){
-        doctorRepository.save(doctor);
-        return null;
+        return doctorRepository.save(doctor);
     }
 
-    public void updateDoctor(Doctor doctor){
-        doctorRepository.save(doctor);
+    public Doctor updateDoctor(Doctor doctor){
+        return doctorRepository.save(doctor);
     }
 
     public void deleteDoctor(Long id){
