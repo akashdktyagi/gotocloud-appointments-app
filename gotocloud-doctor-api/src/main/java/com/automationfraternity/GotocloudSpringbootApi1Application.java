@@ -1,4 +1,4 @@
-package com.akashdktyagi.gotocloudspringbootapi1;
+package com.automationfraternity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

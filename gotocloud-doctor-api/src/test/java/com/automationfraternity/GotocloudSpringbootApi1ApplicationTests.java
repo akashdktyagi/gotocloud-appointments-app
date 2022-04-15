@@ -1,4 +1,4 @@
-package com.akashdktyagi.gotocloudspringbootapi1;
+package com.automationfraternity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
