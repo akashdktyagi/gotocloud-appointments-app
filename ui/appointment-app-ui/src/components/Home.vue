@@ -1,32 +1,25 @@
 
 <script>
+  export default {
+    props: {
+      msg: String
+    },
+    data(){
+      return {
+        key: 'akash'
+      }
+    },
+    methods: {
+      getListOfAllDoctors(){
 
-export default {
-  props: {
-    msg: String
-  },
-  data(){
-    return {
-      key: 'akash'
+      }
+    },
+    components:{
+    },
+    emits: [],
+    computed: {
     }
-  },
-  methods: {
-    getListOfAllDoctors(){
-
-    }
-
-
-  },
-  components:{
-
-  },
-  emits: [],
-  computed: {
-
   }
-}
-
-
 </script>
 
 <template>
@@ -37,33 +30,33 @@ export default {
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-}
+  h1 {
+    font-weight: 500;
+    font-size: 2.6rem;
+    top: -10px;
+  }
 
-h3 {
-  font-size: 1.2rem;
-}
+  h3 {
+    font-size: 1.2rem;
+  }
 
-div {
-  text-align: center;
-}
+  div {
+    text-align: center;
+  }
 
-.greetings h3 {
-  text-align: center;
-}
-
-
-
-/* .greetings h1,
-
-
-@media (min-width: 1024px) {
-  .greetings h1,
   .greetings h3 {
-    text-align: left;
-  } 
-}*/
+    text-align: center;
+  }
+
+
+
+  /* .greetings h1,
+
+
+  @media (min-width: 1024px) {
+    .greetings h1,
+    .greetings h3 {
+      text-align: left;
+    } 
+  }*/
 </style>

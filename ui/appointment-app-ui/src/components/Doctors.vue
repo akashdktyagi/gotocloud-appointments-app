@@ -9,9 +9,9 @@ export default {
   },
   data(){
     return {
+      // apiURL: process.env.VUE_APP_API_URL,
       doctorsInfo: '',
       errorMessage: '',
-
       id: '',
       name: '',
       registrationID: '',
@@ -23,10 +23,11 @@ export default {
     }
   },
   methods: {
-    // process.env.DOCTORS_API_URL + "/doctors"
+// 'http://localhost:9000/api/doctors'
     getListOfAllDoctors(){
       axios
-      .get('http://localhost:9000/api/doctors')
+      // .get(this.apiURL + "/doctors") 
+            .get("http://localhost:9000/api/doctors") 
       .then(
         res=>{
           this.doctorsInfo = res.data;
@@ -51,8 +52,6 @@ export default {
 
           });
     }
-
-
   },
   components:{
 
@@ -70,8 +69,6 @@ export default {
     <h1 class="green">List of All Doctors</h1>
     <button class="button button2" @click="getListOfAllDoctors()">Get List of Doctors</button>
   </div>
-
-
 
   <div>
     <table v-if="doctorsInfo">
