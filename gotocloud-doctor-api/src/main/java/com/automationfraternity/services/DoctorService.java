@@ -21,8 +21,13 @@ public class DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    public Doctor updateDoctor(Doctor doctor){
-        return doctorRepository.save(doctor);
+    public Doctor updateDoctor(Doctor doctor) throws Exception {
+        Optional<Doctor> doctorIfPresent = Optional.ofNullable(doctorRepository.findByRegistrationID(doctor.getRegistrationID()));
+        if (doctorIfPresent.isPresent()){
+            return doctorRepository.save(doctor);
+        }else{
+            throw new Exception("Doctor not present with this registration id: " + doctor.getRegistrationID() + "  can not Update.");
+        }
     }
 
     public void deleteDoctor(Long id){

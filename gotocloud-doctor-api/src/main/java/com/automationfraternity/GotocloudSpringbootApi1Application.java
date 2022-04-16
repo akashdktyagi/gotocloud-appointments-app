@@ -22,6 +22,4 @@ public class GotocloudSpringbootApi1Application {
 		  "clinicNameAndAddress":"dfgdG",
 		  "canDoHomeVisit":"true"
 		  }
-
-
  */

@@ -3,7 +3,6 @@ package com.automationfraternity.controller;
 import com.automationfraternity.model.Doctor;
 import com.automationfraternity.services.DoctorService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +22,7 @@ public class DoctorController {
     }
 
     @PutMapping("/doctors")
-    public Doctor updateDoctor(@RequestBody Doctor doctor){
+    public Doctor updateDoctor(@RequestBody Doctor doctor) throws Exception {
         return doctorService.updateDoctor(doctor);
     }
 
