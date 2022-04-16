@@ -31,12 +31,9 @@ export default {
 
 <template>
   <div class="greetings">
-    <h1 class="green">Doctors View Page</h1>
-    <h3>
-      You’ve successfully created a project with
-
-    </h3>
+    <h1 class="green">Welcome to Appointment Booking App</h1>
   </div>
+
 </template>
 
 <style scoped>
@@ -54,10 +51,14 @@ div {
   text-align: center;
 }
 
-/* .greetings h1,
 .greetings h3 {
   text-align: center;
 }
+
+
+
+/* .greetings h1,
+
 
 @media (min-width: 1024px) {
   .greetings h1,

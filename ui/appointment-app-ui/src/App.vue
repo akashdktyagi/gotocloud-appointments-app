@@ -4,15 +4,6 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- <menu>
-    <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/doctors">Doctors</RouterLink>
-    </nav>
-  </menu>
-
-  <RouterView /> -->
 
 <div id="app">
   <h1>Demo Appointment Booking App</h1>
@@ -23,8 +14,8 @@ import { RouterLink, RouterView } from 'vue-router'
         <ul>
             <li><RouterLink to="/">Home</RouterLink></li>
             <li><RouterLink to="/doctors">Doctors Info</RouterLink></li>
-            <li><RouterLink to="/patients">Patients Info</RouterLink></li>
-            <li><RouterLink to="/appointments">Appointment Booking</RouterLink></li>
+            <li><RouterLink to="/pageIsNotReadyYet">Patients Info</RouterLink></li>
+            <li><RouterLink to="/pageIsNotReadyYet">Appointment Booking</RouterLink></li>
         </ul>
     </nav>
   </menu>
