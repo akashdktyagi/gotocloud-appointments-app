@@ -9,7 +9,7 @@ export default {
   },
   data(){
     return {
-      // apiURL: process.env.VUE_APP_API_URL,
+      apiURL: import.meta.env.VITE_API_URL,
       doctorsInfo: '',
       errorMessage: '',
       id: '',
@@ -25,9 +25,11 @@ export default {
   methods: {
 // 'http://localhost:9000/api/doctors'
     getListOfAllDoctors(){
+      // const BASE_URL = process.env.VUE_APP_BASEURL
+      console.log("API URL: " + this.apiURL);
       axios
-      // .get(this.apiURL + "/doctors") 
-            .get("http://localhost:9000/api/doctors") 
+      .get(this.apiURL + "/doctors") 
+            // .get("http://localhost:9000/api/doctors") 
       .then(
         res=>{
           this.doctorsInfo = res.data;
