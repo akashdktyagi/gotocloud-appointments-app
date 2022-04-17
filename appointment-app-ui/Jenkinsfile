@@ -4,7 +4,7 @@ pipeline {
         stage('Build Create and Push Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'p', usernameVariable: 'u')]) {
-                   sh "docker build -f appointment-app-ui/Dockerfile --tag yantraqa/gotocloud-appointment-app-ui:latest ."
+                   sh "docker build -f appointment-app-ui/Dockerfile --tag yantraqa/gotocloud-appointment-app-ui:latest appointment-app-ui"
                 }
             }
         }
