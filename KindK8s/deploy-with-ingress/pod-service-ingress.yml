@@ -1,0 +1,76 @@
+# Copied from here: https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx
+kind: Pod
+apiVersion: v1
+metadata:
+  name: gotocloud-appointment-app-ui
+  labels:
+    app: gotocloud-appointment-app-ui
+spec:
+  containers:
+    - name: gotocloud-appointment-app-ui
+      image: yantraqa/gotocloud-appointment-app-ui:latest
+      args:
+        - "-text=bar"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: svc-gotocloud-appointment-app-ui
+spec:
+  selector:
+    app: gotocloud-appointment-app-ui
+  ports:
+    # Default port used by the image
+    - port: 80
+---
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: bar-app
+  labels:
+    app: bar
+spec:
+  containers:
+    - name: bar-app
+      image: hashicorp/http-echo:0.2.3
+      args:
+        - "-text=bar"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: bar-service
+spec:
+  selector:
+    app: bar
+  ports:
+    # Default port used by the image
+    - port: 5678
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: "/gotocloud-appointment-app-ui"
+            backend:
+              service:
+                name: svc-gotocloud-appointment-app-ui
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/bar"
+            backend:
+              service:
+                name: bar-service
+                port:
+                  number: 5678
+
+---
