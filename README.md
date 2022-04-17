@@ -1,6 +1,6 @@
 # gotocloud-appointment-app
-* A reference App to demonstrate all aspects of a Microservice architecture, Solution Design, Software Enginnering and DevOps
-* This is an ongoing work for the above purpose. Status and Plan is mentioned below.
+* A reference App to learn, practice and demonstrate all aspects of a Microservice architecture, Solution Design, Software Enginnering and DevOps
+* This is an ongoing work for the above purpose. I started this on: '3rdApril2022'; however with No end date. Status and Plan on components is mentioned below. Feel free to contribute if you wish.
 * 'gotocloud' is just a name I have given to this initiative and do not have any special meaning.
 
 ---
