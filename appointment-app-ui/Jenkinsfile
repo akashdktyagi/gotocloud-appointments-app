@@ -5,6 +5,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'p', usernameVariable: 'u')]) {
                    sh "docker build -f appointment-app-ui/Dockerfile --tag yantraqa/gotocloud-appointment-app-ui:latest appointment-app-ui"
+                   sh "docker login --username $u --password $p"
                    sh "docker image push docker.io/yantraqa/gotocloud-appointment-app-ui:latest"
                 }
             }
