@@ -21,3 +21,19 @@
 
 ### Implementation Progress and Plan
 * Yet to be created.
+* Doctors API
+  * API Basic Impl
+  * Swagger Impl
+  * Cucumber Integration Test
+  * Unit Test
+  * Jacoco Impl
+  * Sonar Analysis for Code Smells and Unit test coverage
+  * PR Sonar Analysis
+  * Google JIB
+
+* CI:
+  * Doctors API Pipeline
+  * UI Pipeline
+  * 
+
+

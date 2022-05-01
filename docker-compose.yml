@@ -1,0 +1,9 @@
+services:
+  ui:
+    build: ./gotocloud-appointment-app-ui
+    ports:
+      - "80:8080"
+  doctors-api:
+    build: ./gotocloud-appointment-app-backend
+    ports:
+      - "9000:9000"
