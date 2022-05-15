@@ -1,9 +1,11 @@
 services:
   ui:
-    build: ./gotocloud-appointment-app-ui
+    build: 
+      context: ./gotocloud-appointment-app-ui
+      dockerfile: DockerfileStage
     ports:
-      - "80:8080"
+      - "80:80"
   doctors-api:
-    build: ./gotocloud-appointment-app-backend
+    image: yantraqa/gotocloud-doctor-api:latest
     ports:
       - "9000:9000"
