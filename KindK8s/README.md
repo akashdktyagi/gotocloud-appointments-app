@@ -20,7 +20,24 @@ kubectl wait --namespace ingress-nginx \
 #  you will see this message if it ingress controller successfully installed
   pod/ingress-nginx-controller-56d4b5df54-zw268 condition met
 ```
+#### Deploy the K8s default Dashboard
 * Install k8s dashboard as well if you want. Details kept here: https://github.com/akashdktyagi/kind-k8s
+
+  * Follow links: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+  * Follow Links: https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+  * Steps to follow:
+    * Run command: ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml```
+    * This will deploy the dashboard in new namespace named dashboard-k8s 
+    * Create user as mentioned in below steps. Reference taken from this link: https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+      * Create a new yml file like this: [deploy-with-ingress/dashboard-user-account.yml](deploy-with-ingress/dashboard-user-account.yml)
+      * Run ```kubectl apply -f deploy-with-ingress/dashboard-user-account.yml```
+      * This will create user access
+      * Then get the token by running: ```kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"```
+      * you will get the token, copy it
+      * Run, ```kubectl proxy```; this will start the dashboard
+      * Go to link in your browser: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+      * It will ask for token, enter the token generated from previous Step.
+
 * Run the Deployment file: [Deployment File](deploy-with-ingress/deployment.yml)
   * Run the command: ```kubectl apply -f deployment.yml```
   * Run ```kubectl get deployments```  . This will show all the deployments in default name space.
