@@ -8,7 +8,8 @@ metadata:
 spec:
   containers:
     - name: gotocloud-appointment-app-ui
-      image: yantraqa/gotocloud-appointment-app-ui:latest
+      image: docker.io/yantraqa/gotocloud-appointment-app-ui:latest
+      imagePullPolicy: Always
       args:
         - "-text=bar"
 ---
@@ -53,13 +54,13 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: example-ingress
+  name: example-ingress1
 spec:
   rules:
     - http:
         paths:
           - pathType: Prefix
-            path: "/gotocloud-appointment-app-ui"
+            path: "/ui"
             backend:
               service:
                 name: svc-gotocloud-appointment-app-ui
