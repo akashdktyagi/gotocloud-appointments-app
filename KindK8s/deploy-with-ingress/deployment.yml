@@ -137,7 +137,7 @@ spec:
     - http:
         paths:
           - pathType: Prefix
-            path: "/ui"
+            path: /
             backend:
               service:
                 name: svc-gotocloud-appointment-app-ui

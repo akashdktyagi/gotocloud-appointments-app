@@ -13,13 +13,13 @@ public class GotocloudSpringbootApi1Application {
 }
 
 /*
-  { "name":"akash",
+  { "name":"akash111",
 		  "registrationID":"dfgdg",
 		  "qualifications":"dfgdfg",
 		  "specialization":"sfgsdgf",
-		  "experienceInYears":"sdfsfg",
+		  "experienceInYears":4,
 		  "emailID":"dfgfdg",
 		  "clinicNameAndAddress":"dfgdG",
-		  "canDoHomeVisit":"true"
+		  "canDoHomeVisit":true
 		  }
  */
