@@ -43,7 +43,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: example-ingress
+  name: backend-ingress
 spec:
   rules:
     - http:
@@ -76,6 +76,73 @@ spec:
                 name: svc-gotocloud-doctor-api
                 port:
                   number: 9000
+          - pathType: Prefix
+            path: "/bar"
+            backend:
+              service:
+                name: bar-service
+                port:
+                  number: 5678
+
+---
+# Front End, deployment, Service and Ingress Settings
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gotocloud-appointment-app-ui
+spec:
+  selector:
+    matchLabels:
+      app: gotocloud-appointment-app-ui
+      tier: frontend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gotocloud-appointment-app-ui
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+        - name: gotocloud-appointment-app-ui
+          image: "docker.io/yantraqa/gotocloud-appointment-app-ui:latest"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: svc-gotocloud-appointment-app-ui
+spec:
+  selector:
+    app: gotocloud-appointment-app-ui
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: "/ui"
+            backend:
+              service:
+                name: svc-gotocloud-appointment-app-ui
+                port:
+                  number: 80
           - pathType: Prefix
             path: "/bar"
             backend:
