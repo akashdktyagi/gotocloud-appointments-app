@@ -16,6 +16,11 @@ const router = createRouter({
       component: () => import('@/components/Doctors.vue')
     },
     {
+      path: '/doctors/admin',
+      name: 'doctorsadmin',
+      component: () => import('@/components/DoctorsAdmin.vue')
+    },
+    {
       path: '/pageIsNotReadyYet',
       name: 'pageIsNotReadyYet',
       component: () => import('@/components/PageIsNotReadyYet.vue')

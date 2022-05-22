@@ -16,6 +16,7 @@ export default {
       name: '',
       registrationID: '',
       specialization: '',
+      qualifications:'',
       experienceInYears: '',
       emailID: '',
       clinicNameAndAddress: '',
@@ -35,22 +36,22 @@ export default {
           this.doctorsInfo = res.data;
           console.log("Status for get Request: " + res.status);
         }
-      )   .catch(function (error) {
-            if (error.response) {
-              // Request made and server responded
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-              this.errorMessage = "Data:" + error.response.data + " Status: " + error.response.status + "Headers: " + error.response.headers;
-            } else if (error.request) {
-              // The request was made but no response was received
-              console.log(error.request);
-              this.errorMessage = error.request;
-            } else {
-              // Something happened in setting up the request that triggered an Error
-              console.log('Error', error.message);
-              this.errorMessage = error.message;
-            }
+      ).catch(function (error) {
+          if (error.response) {
+            // Request made and server responded
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            this.errorMessage = "Data:" + error.response.data + " Status: " + error.response.status + "Headers: " + error.response.headers;
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+            this.errorMessage = error.request;
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);
+            this.errorMessage = error.message;
+          }
 
           });
     }
@@ -79,6 +80,7 @@ export default {
         <th>name</th>
         <th>registrationID</th>
         <th>specialization</th>
+        <th>qualifications</th>
         <th>experienceInYears</th>
         <th>emailID</th>
         <th>clinicNameAndAddress</th>
@@ -89,6 +91,7 @@ export default {
           <td>{{doc.name}}</td>
           <td>{{doc.registrationID}}</td>
           <td>{{doc.specialization}}</td>
+          <td>{{doc.qualifications}}</td>
           <td>{{doc.experienceInYears}}</td>
           <td>{{doc.emailID}}</td>       
           <td>{{doc.clinicNameAndAddress}}</td>       

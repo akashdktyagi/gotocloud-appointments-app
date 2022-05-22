@@ -2,6 +2,10 @@ package com.automationfraternity.controller;
 
 import com.automationfraternity.model.Doctor;
 import com.automationfraternity.services.DoctorService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -9,16 +13,18 @@ import java.util.Optional;
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class DoctorController {
 
     private DoctorService doctorService;
-
     public DoctorController(DoctorService doctorService){
         this.doctorService = doctorService;
     }
 
     @PostMapping("/doctors")
     public Doctor createDoctor(@RequestBody Doctor doctor){
+        log.debug("akt: "+ doctor.toString());
+        System.out.println("akt print: "+ doctor.toString());
         return doctorService.createDoctor(doctor);
     }
 
