@@ -10,6 +10,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <sonar.organization>akashdktyagi-github</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
+
     <artifactId>gotocloud-doctor-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
