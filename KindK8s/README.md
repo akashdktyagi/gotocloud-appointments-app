@@ -49,6 +49,7 @@ kubectl wait --namespace ingress-nginx \
   * Check the Official Cheat Sheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
   * Get all pods: ```kubectl get pods```
   * Get Logs from pods: ```kubectl logs my-pod```
+  * To restart a deployment to pull latest image: ```kubectl rollout restart deployment/gotocloud-appointment-app-ui```
 
 ### Reference Links:
 
