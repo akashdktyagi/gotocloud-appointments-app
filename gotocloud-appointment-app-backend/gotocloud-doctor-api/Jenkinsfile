@@ -1,16 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('sonar') {
+        stage('Unit Test and Sonar Analysis-mvn test') {
             steps {
                 withEnv(['SONAR_TOKEN=0ab2cf1faf9fb442a7fa818f57cf552e1d3b9649']) {
-                     sh ' mvn -f gotocloud-appointment-app-backend/gotocloud-doctor-api/pom.xml -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=akashdktyagi_gotocloud-appointments-app'
+                     sh ' mvn -f gotocloud-appointment-app-backend/gotocloud-doctor-api/pom.xml -B test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=akashdktyagi_gotocloud-appointments-app'
                 }
 
             }
         }
 
-        stage('Build Create and Push Image') {
+        stage('Create and Push Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'p', usernameVariable: 'u')]) {
                    sh "mvn -f gotocloud-appointment-app-backend/gotocloud-doctor-api/pom.xml -B clean install -Djib.to.auth.username=$u -Djib.to.auth.password=$p"
