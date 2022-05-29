@@ -23,8 +23,6 @@ public class DoctorController {
 
     @PostMapping("/doctors")
     public Doctor createDoctor(@RequestBody Doctor doctor){
-        log.debug("akt: "+ doctor.toString());
-        System.out.println("akt print: "+ doctor.toString());
         return doctorService.createDoctor(doctor);
     }
 
