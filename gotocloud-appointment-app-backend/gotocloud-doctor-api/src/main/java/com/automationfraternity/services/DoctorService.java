@@ -2,6 +2,7 @@ package com.automationfraternity.services;
 
 import com.automationfraternity.model.Doctor;
 import com.automationfraternity.repository.IDoctorRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class DoctorService {
 
     private IDoctorRepository doctorRepository;
@@ -22,7 +24,7 @@ public class DoctorService {
     }
 
     public Doctor updateDoctor(Doctor doctor) throws Exception {
-        Optional<Doctor> doctorIfPresent = Optional.ofNullable(doctorRepository.findByRegistrationID(doctor.getRegistrationID()));
+        Optional<Doctor> doctorIfPresent = doctorRepository.findByRegistrationID(doctor.getRegistrationID());
         if (doctorIfPresent.isPresent()){
             return doctorRepository.save(doctor);
         }else{
@@ -30,8 +32,16 @@ public class DoctorService {
         }
     }
 
-    public void deleteDoctor(Long id){
-        doctorRepository.deleteById(id);
+    public Optional<Doctor> deleteDoctorByRegistrationID(String registrationID) throws Exception {
+        Optional<Doctor> doctorToBeDelete = getDoctorListByRegistrationID(registrationID);
+        if (doctorToBeDelete.isPresent()){
+            doctorRepository.deleteByRegistrationID(registrationID);
+            log.info("Doctor Deleted with registration id as :" + registrationID);
+        }else{
+            throw new Exception("Doctor not present with this registration id: " + registrationID + "  can not Delete.");
+        }
+        return doctorToBeDelete;
+
     }
 
     public List<Doctor> getAllDoctors(){
@@ -46,7 +56,7 @@ public class DoctorService {
         return doctorRepository.findByName(name);
     }
 
-    public Doctor getDoctorListByRegistrationID(String id){
+    public Optional<Doctor> getDoctorListByRegistrationID(String id){
         return doctorRepository.findByRegistrationID(id);
     }
 }

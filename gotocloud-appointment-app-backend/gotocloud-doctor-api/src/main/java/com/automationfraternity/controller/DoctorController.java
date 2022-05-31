@@ -31,9 +31,9 @@ public class DoctorController {
         return doctorService.updateDoctor(doctor);
     }
 
-    @DeleteMapping("/doctors/{id}")
-    public void deleteDoctor(@PathVariable Long id){
-        doctorService.deleteDoctor(id);
+    @DeleteMapping("/doctors/{registrationID}")
+    public void deleteDoctorWithRegistrationID(@PathVariable String registrationID) throws Exception {
+        doctorService.deleteDoctorByRegistrationID(registrationID);
     }
 
     @GetMapping("/doctors")
@@ -52,7 +52,7 @@ public class DoctorController {
     }
 
     @GetMapping("/doctors/{registrationID}")
-    public Doctor getDoctorListByRegistrationID(@PathVariable String registrationID){
+    public Optional<Doctor> getDoctorListByRegistrationID(@PathVariable String registrationID){
         return doctorService.getDoctorListByRegistrationID(registrationID);
     }
 
