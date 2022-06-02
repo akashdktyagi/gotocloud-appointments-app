@@ -41,11 +41,6 @@ public class DoctorController {
         return doctorService.getAllDoctors();
     }
 
-    @GetMapping("/doctors/{id}")
-    public Optional<Doctor> getDoctorByID(@PathVariable Long id){
-        return doctorService.getDoctorByID(id);
-    }
-
     @GetMapping("/doctors/{name}")
     public List<Doctor> getDoctorListByName(@PathVariable String name){
         return doctorService.getDoctorListByName(name);

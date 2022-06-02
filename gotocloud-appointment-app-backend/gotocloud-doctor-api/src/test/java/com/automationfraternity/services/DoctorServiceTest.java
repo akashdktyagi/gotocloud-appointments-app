@@ -2,11 +2,14 @@ package com.automationfraternity.services;
 
 import com.automationfraternity.model.Doctor;
 import com.automationfraternity.repository.IDoctorRepository;
+import com.google.common.collect.Lists;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import javax.print.Doc;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
@@ -20,6 +23,10 @@ class DoctorServiceTest {
     IDoctorRepository doctorRepository;
 
     Doctor doctor = Doctor.builder()
+            .withName("Akash").withCanDoHomeVisit(true).withEmailID("akash.tyagi@wow.com")
+            .withClinicNameAndAddress("patal lok").withExperienceInYears(90).withRegistrationID("1234567")
+            .withSpecialization("MBBS").build();
+    Doctor doctor1 = Doctor.builder()
             .withName("Akash").withCanDoHomeVisit(true).withEmailID("akash.tyagi@wow.com")
             .withClinicNameAndAddress("patal lok").withExperienceInYears(90).withRegistrationID("1234567")
             .withSpecialization("MBBS").build();
@@ -46,10 +53,17 @@ class DoctorServiceTest {
     }
 
     @Test
-    void updateDoctor() throws Exception {
+    void updateDoctorIfDoctorIsFound() throws Exception {
         Mockito.when(doctorRepository.findByRegistrationID(any())).thenReturn(java.util.Optional.ofNullable(doctorToBeUpdated));
         Doctor doctorReturned = doctorService.updateDoctor(doctorToBeUpdated);
         Assertions.assertThat(doctorReturned.getName()).isEqualTo(doctorToBeUpdated.getName());
+    }
+
+    @Test
+    void updateDoctorIfDoctorIsNotFound() throws Exception {
+        Throwable thrown = catchThrowable(()->{doctorService.updateDoctor(doctorToBeUpdated);});
+        Assertions.assertThat(thrown).isInstanceOf(Exception.class)
+                .hasMessage("Doctor not present with this registration id: 1234567  can not Update.");
     }
 
     @Test
@@ -70,17 +84,22 @@ class DoctorServiceTest {
 
     @Test
     void getAllDoctors() {
-    }
-
-    @Test
-    void getDoctorByID() {
+        Mockito.when(doctorRepository.findAll()).thenReturn(Lists.newArrayList(doctor,doctor1));
+        List<Doctor> returnList = doctorService.getAllDoctors();
+        Assertions.assertThat(returnList).hasAtLeastOneElementOfType(Doctor.class);
     }
 
     @Test
     void getDoctorListByName() {
+        Mockito.when(doctorRepository.findByName(any())).thenReturn(Lists.newArrayList(doctor,doctor1));
+        List<Doctor> returnList = doctorService.getDoctorListByName("Akash");
+        Assertions.assertThat(returnList).hasAtLeastOneElementOfType(Doctor.class);
     }
 
     @Test
     void getDoctorListByRegistrationID() {
+        Mockito.when(doctorRepository.findByRegistrationID(any())).thenReturn(java.util.Optional.ofNullable(doctorToBeDeleted));
+        Optional<Doctor> docGetByID = doctorService.getDoctorListByRegistrationID("1");
+        Assertions.assertThat(docGetByID.get().getRegistrationID()).isEqualTo("1");
     }
 }

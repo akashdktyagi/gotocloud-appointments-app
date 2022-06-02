@@ -48,10 +48,6 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
-    public Optional<Doctor> getDoctorByID(Long id){
-        return doctorRepository.findById(id);
-    }
-
     public List<Doctor> getDoctorListByName(String name){
         return doctorRepository.findByName(name);
     }
