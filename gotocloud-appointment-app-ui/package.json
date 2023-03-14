@@ -11,6 +11,7 @@
     "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'"
   },
   "dependencies": {
+    "@auth0/auth0-vue": "^2.1.0",
     "axios": "^0.26.1",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
